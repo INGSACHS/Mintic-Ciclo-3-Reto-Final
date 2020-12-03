@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(205, 200, 200);
+}
+
+header {
+    text-align: center;
+    margin-top: 5%;
+    font-family: Sacramento;
+    font-size: xx-large;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 5%;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 2px solid rgba(181, 147, 34, 0.831);
+    width: 25%;
+    height: 200px;
+    margin-top: 7%;
+    border-radius: 20px;
+    background-color: rgba(97, 85, 85, 0.783);
+}
+
+.titulo {
+    text-align: center;
+    font-weight: bolder;
+    font-size: xx-large;
+    font-family: Sacramento;
+    text-decoration: underline;
+}
+
+.opciones > i {
+    margin-left: 50px;
+    color: rgb(211, 211, 211);
+}
+
+.opciones > a {
+    margin-left: 10%;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: large;
+    font-family: Architects Daughter;
+}
+
+section {
+    border: 2px solid orange;
+    width: 60%;
+    height: 450px;
+    border-radius: 20px;
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("../img/Coffee.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.seccion {
+    display: none;
+}
+
+span {
+    text-decoration: underline;
+    font-family: Sacramento;
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+p {
+    text-align: center;
+    margin: 6% 5%;
+    font-weight: normal;
+    font-family: Architects Daughter;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: row;
+    padding: 5%;
+}
+
+label {
+    margin: 5.5% 20%;
+    font-size: large;
+    font-family: Architects Daughter;
+}
+
+input {
+    margin: 3%;
+    font-size: larger;
+    margin-left: 30px;
+    width: 70%;
+}
+
+.etiquetas {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    font-weight: bolder;
+}
+
+.formularioUsuario {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.enviar {
+    background-color: rgb(166, 237, 59);
+    font-weight: bolder;
+    font-family: Sacramento;
+    font-size: xx-large;
+}
+
+/* Prueba */
+
+/* body{
+    background-color: beige;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    background-color: rgb(205, 200, 200);
+} */
+
+/* .hide {
+    display: none;
+} */
+
+.contenedor{
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px ;
+    background-color: rgb(205, 200, 200);
+    border: 2px solid orange;
+    border-radius: 20px;
+}
+.imagen{
+    height: 300px;
+    width: 300px;
+}
+.producto{
+    height: 150px;
+    width: 150px;
+    margin-top: 80px;
+    margin-left: 60px;
+    border: 2px solid  rgba(181, 147, 34, 0.831) ;
+    border-radius: 20%;
+}
+.formularioN{
+    height: 300px;
+    width: 300px;
+    
+    display: flex;
+    flex-direction:column ;
+    justify-content: center;
+    align-items: center;
+
+
+}   
+.boton{
+    margin-top:35px;
+    margin-left: 188px;
+    background-color:  rgb(166, 237, 59);
+    font-family: Sacramento;
+    font-size: large;
+}
+label{
+    font-family: Architects Daughter;
+    font-size: x-large;
+    margin-right: 10px;
+    
+}
+input{
+    margin-right: 40px;
+
+    
+}
+form>div{
+    display: flex;
+    flex-direction: row;
+    justify-items: space-around;
+}
+
+/* Pop-up */
+
+.popup .overlay {
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.7);
+    z-index:1;
+    display:none;
+}
+
+.popup .content {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    background:#fff;
+    width:500px;
+    height:250px;
+    z-index:2;
+    text-align:center;
+    padding:20px;
+    box-sizing:border-box;
+    font-family:"Open Sans",sans-serif;
+}
+
+.popup .close-btn {
+    cursor:pointer;
+    position:absolute;
+    right:20px;
+    top:20px;
+    width:30px;
+    height:30px;
+    background:#222;
+    color:#fff;
+    font-size:25px;
+    font-weight:600;
+    line-height:30px;
+    text-align:center;
+    border-radius:50%;
+}
+
+.popup.active .overlay {
+    display:block;
+}
+
+.popup.active .content {
+    transition:all 300ms ease-in-out;
+    transform:translate(-50%,-50%) scale(1);
+}
+  
