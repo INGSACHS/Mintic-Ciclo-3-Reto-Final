@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador</title>
+    <link rel="stylesheet" href="./Styles/admin.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+</head>
+<body>
+    <header>
+        <h1>Perfil de Administrador</h1>
+    </header>
+    
+    <main>
+        <aside>
+            <div class="titulo">Menú de Opciones</div>
+            <div class="opciones">
+                <i class="fas fa-user-tag fa-lg fa-fw" aria-hidden="true"></i>
+                <a onclick="openSection(event, 'CrearUsuario')">Crear Usuario</a>                
+            </div>
+            <div class="opciones">
+                <i class="fas fa-coffee fa-lg fa-fw" aria-hidden="true"></i>
+                <a onclick="openSection(event, 'CrearProducto')">Crear Producto</a>
+            </div>
+            <div class="opciones">
+                <i class="fas fa-search fa-lg fa-fw" aria-hidden="true"></i>
+                <a onclick="location.href = 'inventario.html'">Buscar Producto</a>
+            </div>
+        </aside>
+        <section>
+            <div id="welcome">
+                <p>
+                    <span>
+                        ¡ Bienvenido !
+                    </span>
+                </p>
+                <p>
+                    Usted ha ingresado de manera exitosa al aplicativo de gestión de inventarios de la Cafetería UNI.
+                </p>
+                <p>
+                    Dentro de esta sección usted podrá gestionar la creación de usuarios, creación de productos, y búsqueda de los mismos para su actualización. Esperamos que la plataforma sea de su completo agrado. 
+                </p>
+                <p>
+                    Cualquier duda o sugerencia por favor comunicarse cuanto antes con el personal administrativo.
+                </p>
+            </div>
+            <form action="" class="seccion" id="CrearUsuario">
+                <div class="formulario">
+                    <div class="etiquetas">
+                        <label for="nombre">Nombre Usuario</label>
+                        <label for="correo">Correo</label>
+                        <label for="contraseña">Contraseña</label>
+                        <label for="foto">Foto</label>
+                    </div>
+                    <div class="formularioUsuario">
+                        <input type="text" name="name" id="nombre">
+                        <input type="email" name="email" id="correo">
+                        <input type="password" name="password" id="contraseña">
+                        <input type="file" name="photo" id="foto">
+                        <input class="enviar" type="submit" value="Autenticar Usuario">
+                    </div>
+                </div>
+            </form>
+            <form action="" class="seccion" id="CrearProducto">
+                <div class="formulario">
+                    <div class="etiquetas">
+                        <label for="nombre">Nombre Producto</label>
+                        <label for="cantidad">Cantidad</label>
+                        <label for="descripcion">Descripción</label>
+                        <label for="foto">Foto</label>
+                    </div>
+                    <div class="formularioUsuario">
+                        <input type="text" name="name" id="nombre">
+                        <input type="number" name="quantity" id="cantidad">
+                        <input type="text" name="description" id="descripcion">
+                        <input type="file" name="photo" id="foto">
+                        <input class="enviar" type="submit" value="Crear Producto">
+                    </div>
+                </div>
+            </form>
+        </section>  
+    </main>
+
+    <script src="./js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+body {
+    background-color: rgb(205, 200, 200);
+}
+
+.titulo{
+    text-align: center;
+    font-family: Sacramento;
+    font-size: 70px;
+}
+
+.busqueda {
+    background-color: rgb(166, 237, 59);
+    font-weight: bolder;
+    font-family: Sacramento;
+    font-size: x-large;
+    margin-top: 10px;
+}
+
+.barraBusqueda {
+    height: 30px;
+    width: 300px;
+    border-radius: 5px;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    font-family: Sacramento;
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+.caja1{
+    display: flex;
+    flex-direction: row;
+    background: white;
+    border: 5px solid grey;
+    border-top: 2px solid grey;
+    border-left: 2px solid grey;
+    border-radius: 4%;
+    height: auto;
+    width: 1250px;
+    padding: 30px;
+    margin: 20px;
+    margin-top: 50px;
+}
+
+.taza1{
+    width: 10%;
+}
+
+.info{
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;   
+}
+
+.descripcion{
+    padding-left: 50%;
+    font-family: Architects Daughter;
+}
+
+.colorEditar{
+    font-family: Architects Daughter;
+    cursor: pointer;
+}
+.colorEditar:hover{
+    color: green;
+}
+
+.caja2{
+    display: flex;
+    flex-direction: row;
+    background: white;
+    border: 5px solid grey;
+    border-top: 2px solid grey;
+    border-left: 2px solid grey;
+    border-radius: 4%;
+    height: auto;
+    width: 1250px;
+    padding: 30px;
+    margin: 20px;
+}
+
+.info2{
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;   
+}
+
+.torta{
+    width: 10%;
+}
+
+.descripcion2{
+    padding-left: 45%;
+    font-family: Architects Daughter;
+}
+
+.caja3{
+    display: flex;
+    flex-direction: row;
+    background: white;
+    border: 5px solid grey;
+    border-top: 2px solid grey;
+    border-left: 2px solid grey;
+    border-radius: 4%;
+    height: auto;
+    width: 1250px;
+    padding: 30px;
+    margin: 20px;
+}
+
+.info3{
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;   
+}
+
+.granizado{
+    width: 10%;
+}
+
+.descripcion3{
+    padding-left: 46%;
+    font-family: Architects Daughter;
+}
+
+/* Popup */
+
+.popup .overlay {
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.7);
+    z-index:1;
+    display:none;
+}
+
+.popup .content {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    width:500px;
+    height:450px;
+    z-index:2;
+    text-align:center;
+    padding:20px;
+    box-sizing:border-box;
+    font-family:"Open Sans",sans-serif;
+}
+
+.popup .close-btn {
+    cursor:pointer;
+    position:absolute;
+    right:35px;
+    top:130px;
+    width:30px;
+    height:30px;
+    background:#222;
+    color:#fff;
+    font-size:25px;
+    font-weight:600;
+    line-height:30px;
+    text-align:center;
+    border-radius:50%;
+}
+
+.popup.active .overlay {
+    display:block;
+}
+
+.popup.active .content {
+    transition:all 300ms ease-in-out;
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px ;
+    background-color: rgb(205, 200, 200);
+    border: 2px solid orange;
+    border-radius: 20px;
+}
+
+.imagen{
+    height: 300px;
+    width: 300px;
+}
+
+.producto{
+    height: 150px;
+    width: 150px;
+    margin-top: 80px;
+    margin-left: 60px;
+    border: 2px solid  rgba(181, 147, 34, 0.831) ;
+    border-radius: 20%;
+}
+
+.formularioN{
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction:column ;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton{
+    margin-top: 40px;
+    margin-left: 2px;
+    margin-right: 70px;
+    background-color:  rgb(166, 237, 59);
+    font-family: Sacramento;
+    font-size: x-large;
+    width: 40%;
+}
+
+.quantity {
+    font-family: Architects Daughter;
+    font-size: x-large;
+    margin-left: 30px;
+    margin-right: 15px;
+}
+
+.quantity1 {
+    margin-right: 100px;
+    margin-left: 0;
+    width: 50px;
+}
+
+form > div{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-items: space-around;
+}
