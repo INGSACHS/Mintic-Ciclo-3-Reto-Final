@@ -7,7 +7,7 @@ function mostrarPopup() {
 function mostrarPagina(opcion) {
     if (opcion == 1) {
         window.open("../admin.html", "_self");
-    } else {
+    } else if (opcion == 2) {
         window.open("../general.html", "_self");
     }
     return false;
