@@ -1,0 +1,187 @@
+/******************************************************************************************************************
+* Bloque para importar librerias 
+******************************************************************************************************************/
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+/******************************************************************************************************************
+* Estilos definidos para la ventana de olvido su contraseña
+******************************************************************************************************************/
+.popup .overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+}
+
+.popup .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background-image: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .5)), url(../img/taza_Cafe.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 390px;
+    height: 370px;
+    z-index: 2;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.popup .close-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 25px;
+    width: 30px;
+    height: 30px;
+    background: #222;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.popup.active .overlay {
+    display: block;
+}
+
+.popup.active .content {
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.font_leyenda {
+    font-family: Sacramento;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.font_parrafo {
+    font-family: Architects Daughter;
+}
+
+.form_password {
+    margin-right: 15px;
+    margin-left: -15px;
+}
+
+.boton {
+    font-family: Sacramento;
+    font-size: x-large;
+    width: fit-content;
+    background-color: rgb(166, 237, 59);
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/******************************************************************************************************************
+* Estilos definidos para la ventana de login
+******************************************************************************************************************/
+body {
+    background-image: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .5)), url(../img/taza_cafe.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 140px;
+}
+
+input {
+    width: 100%;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 15px;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: dodgerBlue;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+footer {
+    text-align: center;
+    margin-top: 88px;
+}
+
+.titulo {
+    margin-top: 25px;
+}
+
+.font_encabezado {
+    font-family: Sacramento;
+    font-size: 50px;
+}
+
+.font_etiquetas {
+    font-family: Architects Daughter;
+    font-weight: bold;
+    padding-left: 17px;
+}
+
+.entrada_con_icono input {
+    padding-left: 40px;
+}
+
+.entrada_con_icono {
+    position: relative;
+}
+
+.entrada_con_icono i {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    padding: 9px 8px;
+    color: #aaa;
+    transition: 0.3s;
+}
+
+.entrada_con_icono input:focus+i {
+    color: dodgerBlue;
+}
+
+.link_boton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.estilo_link {
+    font-family: Architects Daughter;
+    font-size: 16px;
+    padding-left: 25px;
+    text-decoration: none;
+    color: black;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.estilo_boton {
+    font-family: Sacramento;
+    font-size: large;
+    margin-left: 40px;
+    width: fit-content;
+    background-color: rgb(166, 237, 59);
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
