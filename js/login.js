@@ -33,8 +33,8 @@ function validarDatosFormularioLogin() {
                             } else if (user.value == "cliente") {
                                 mostrarPagina(2);
                             }
-                            alert("Usuario: " + user.value + "\nContraseña: " + pass.value);
-                            mostrarPagina();
+                            /* alert("Usuario: " + user.value + "\nContraseña: " + pass.value);
+                            mostrarPagina(); */
                         } else {
                             alert("La contraseña debe tener: \nMinimo 8 caracteres, \nMaximo 15 caracteres, \nAl menos una letra mayúscula, \nAl menos una letra minucula, \nAl menos un dígito, \nNo debe tener espacios en blanco, \nAl menos 1 caracter especial");
                             pass.value = "";
@@ -59,7 +59,6 @@ function validarDatosFormularioLogin() {
     }
 
     return false;
-
 }
 
 //Función para vaidar los datos ingresados en el campo del popup
@@ -74,7 +73,8 @@ function validarDatosFormularioPassword() {
         console.log(email.value);
         if (!(/^\s+$/.test(email.value))) {
             if (email.value.match(formatoCorreo)) {
-                alert("Correo electrónico: " + email.value);
+                /* alert("Correo electrónico: " + email.value); */
+                alert("Correo de recuperación de contraseña enviado");
             } else {
                 alert("EL correo electrónico ingresado es invalido. Ingrese nuevamente el correo");
             }
