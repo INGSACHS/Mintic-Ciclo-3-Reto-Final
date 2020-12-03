@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Cabecera-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario Cafeteria</title>
+
+    <!--Importar referencias-->
+    <link rel="shortcut icon" href="./img/coffee.png">
+    <link rel="stylesheet" href="./Styles/login.css">
+    <script src="./js/login.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+</head>
+
+<!--Cuerpo-->
+
+<body>
+
+    <!-- Popup Olvido Contraseña-->
+    <div class="popup" id="popup">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="mostrarPopup()">&times;</div>
+            <fieldset>
+                <legend class="font_leyenda">Olvido su contraseña?</legend>
+                <div>
+                    <p class="font_parrafo">Ingrese la dirección de correo electrónico que utilizó para registrarse.
+                        <br> Enviaremos un mensaje con instrucciones para recuperar el acceso.
+                    </p>
+                    <form action="" method="POST" name="formulario_password" class="form_password"
+                        onsubmit="return validarDatosFormularioPassword();">
+                        <label for="email" class="font_etiquetas">Dirección de correo electrónico</label>
+                        <div class="entrada_con_icono">
+                            <input type="text" name="email" id="email" placeholder="Correo electrónico"
+                                class="font_etiquetas">
+                            <i class="fa fa-at fa-lg fa-fw" aria-hidden="true"></i>
+                        </div>
+                        <input class="boton" type="submit" value="Recuperar contraseña">
+                    </form>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <!--Menú Login-->
+    <main>
+        <div class="titulo">
+            <h1 class="font_encabezado">Inventario Cafetería</h1>
+        </div>
+        <form action="" method="POST" name="formulario_login" onsubmit="return validarDatosFormularioLogin();">
+            <label for="username" class="font_etiquetas">Nombre de Usuario:</label>
+            <div class="entrada_con_icono">
+                <input type="text" name="username" id="username" placeholder="Nombre" class="font_etiquetas">
+                <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+            </div>
+            <label for="password" class="font_etiquetas">Contraseña:</label>
+            <div class="entrada_con_icono">
+                <input type="password" name="password" id="password" placeholder="Contraseña" class="font_etiquetas">
+                <i class="fa fa-lock fa-lg fa-fw" aria-hidden="true"></i>
+            </div>
+            <div class="link_boton">
+                <a class="estilo_link" onclick="mostrarPopup();">¿Olvidastes tu contraseña?</a>
+                <input class="estilo_boton" type="submit" value="Iniciar Sesión">
+            </div>
+        </form>
+    </main>
+
+    <!--Pie de página-->
+    <footer class="font_etiquetas">Copyrigth© 2020</footer>
+
+</body>
+
+</html>
