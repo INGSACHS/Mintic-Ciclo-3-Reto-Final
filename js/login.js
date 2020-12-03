@@ -4,8 +4,12 @@ function mostrarPopup() {
 }
 
 //Función para mostrar la página siguiente al logeo
-function mostrarPagina() {
-    window.open("../admin.html", "_self");
+function mostrarPagina(opcion) {
+    if (opcion == 1) {
+        window.open("../admin.html", "_self");
+    } else {
+        window.open("../general.html", "_self");
+    }
     return false;
 }
 
@@ -19,11 +23,16 @@ function validarDatosFormularioLogin() {
 
     //Validar los datos ingresados
     if (user.value != null) {
-        if (user.value.length == 0 || user.value.length > 8) {
+        if (user.value.length == 0 || user.value.length > 5) {
             if (!(/^\s+$/.test(user.value))) {
                 if (pass.value != null) {
                     if (!(/^\s+$/.test(pass.value))) {
                         if (pass.value.match(expresion_contraseña)) {
+                            if (user.value == "administrador") {
+                                mostrarPagina(1);
+                            } else if (user.value == "cliente") {
+                                mostrarPagina(2);
+                            }
                             alert("Usuario: " + user.value + "\nContraseña: " + pass.value);
                             mostrarPagina();
                         } else {
