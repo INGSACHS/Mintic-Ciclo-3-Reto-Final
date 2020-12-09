@@ -29,7 +29,7 @@ def recuperar():
 
     email = request.form['email']
     
-    msg = Message('Cambio de contraseña', sender= 'torneosdecodmobile@gmail.com',recipients=[email],body="Siga los siguientes pasos para recuperar su contraseña")
+    msg = Message('Cambio de contraseña', sender= 'proycafmintic@gmail.com',recipients=[email],body="Siga los siguientes pasos para recuperar su contraseña")
     mail.send(msg)
 
     
