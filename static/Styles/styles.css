@@ -31,6 +31,11 @@ section {
     align-items: center;
 }
 
+.botones{
+    display: flex;
+    flex-direction: row;
+}
+
 h2 {
     font-family: Sacramento;
     font-size: xx-large;

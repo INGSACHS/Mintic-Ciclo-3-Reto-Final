@@ -17,7 +17,11 @@
     <main>   
         <section>
             <input class="barraBusqueda" type="search" id="buscar" name="Buscar" placeholder="Buscar">
-            <input class="busqueda" type="submit" value="Buscar"/>
+            <div class="botones">
+                <input class="busqueda" type="submit" value="Buscar"/>
+                <input class="busqueda" type="button" value="Regresar" onclick="location.href= 'general.html'"/>
+                <!--a class="busqueda" href="{{ url_for('usuario') }}">Regresar</a>-->
+            </div>
                 <div class="caja1">
                     <img class="taza1" src="{{url_for('static', filename='img/taza.jpg')}}" alt="taza de cafe">
                     <div class="info">
