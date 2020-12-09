@@ -6,7 +6,7 @@
     <meta name="description" content="Gestor de inventario para cafeteria">
     <meta name="keywords" content="Inventario, Gestos de invetario, Cafeteria">
     <title>Inventario | Cafeteria</title>
-    <link rel="stylesheet" href="./Styles/styles.css">
+    <link rel="stylesheet" href="{{url_for ('static', filename='Styles/stylesGeneral.css' )}}">
    </head>
 <body>
     
@@ -14,68 +14,56 @@
         <h1 class="titulo">Inventario para cafeteria </h1>
     </header>
 
-    <main>    
+    <main>   
         <section>
             <input class="barraBusqueda" type="search" id="buscar" name="Buscar" placeholder="Buscar">
             <input class="busqueda" type="submit" value="Buscar"/>
                 <div class="caja1">
-                    <img class="taza1" src="./img/taza.jpg" alt="taza de cafe">
+                    <img class="taza1" src="{{url_for('static', filename='img/taza.jpg')}}" alt="taza de cafe">
                     <div class="info">
                         <h2>Taza de cafe</h2>
                         <div class="links">
                             <a type="submit" class="colorEditar" onclick="togglePopup()">Editar</a>
-                            <a class="colorEliminar">Eliminar</a>
                         </div>
                     </div>
                     <div class="cantidad">
                         <h5>Cantidad en unidades</h5>
-                    </div>
-                    <div class="proyeccion">
-                        <h5>Días proyectados de duración</h5>
                     </div>
                     <div class="descripcion">
                         <p class="textoTaza">Tradicional taza de cafe 100% <br>Colombiano</p>
                     </div>
                 </div>
                 <div class="caja2">
-                    <img class="torta" src="./img/torta.jpeg" alt="torta de chocolate">
+                    <img class="torta" src="{{url_for('static', filename='img/torta.jpeg')}}" alt="torta de chocolate">
                     <div class="info">
                         <h2>Torta de chocolate</h2>
                         <div class="links2">
                             <a class="colorEditar" onclick="togglePopup()">Editar</a>
-                            <a class="colorEliminar">Eliminar</a>
                         </div>
                     </div>
                     <div class="cantidad">
                         <h5>Cantidad en unidades</h5>
-                    </div>
-                    <div class="proyeccion">
-                        <h5>Días proyectados de duración</h5>
                     </div>
                     <div class="descripcion">
                         <p class="textoTaza2">Deliciosa torta de chocolate cubierta con <br> ganashe de chocolate</p>
                     </div>
                 </div>
                 <div class="caja3">
-                    <img class="granizado" src="./img/granizado.jpg" alt="granizado de cafe">
+                    <img class="granizado" src="{{url_for('static', filename='img/granizado.jpg')}}" alt="granizado de cafe">
                     <div class="info">
                         <h2>Graizado de cafe</h2>
                         <div class="links3">
                             <a class="colorEditar" onclick="togglePopup()">Editar</a>
-                            <a class="colorEliminar">Eliminar</a>
                         </div>
                     </div>
                     <div class="cantidad">
                         <h5>Cantidad en unidades</h5>
                     </div>
-                    <div class="proyeccion">
-                        <h5>Días proyectados de duración</h5>
-                    </div>
                     <div class="descripcion">
                         <p class="textoTaza3">Espectacular granizado con crema chantilly</p>
                     </div>
                 </div>
-        </section>
+        </section>    
     </main>
 
     <div class="popup" id="popup-1">
@@ -83,35 +71,26 @@
         <div class="content">
         <div class="close-btn" onclick="togglePopup()">&times;</div>
         <div class="contenedor">
-            <section class="division">
-                <div class="imagen">
-                    <img class="producto" src="./img/producto.jpg" alt="producto">
-                    <input class="cargar" type="file" name="photo" id="foto">
-                </div>
-                <div>
-                    <form class="formulario" action="">
-                        <div class="divInp">
-                            <label class="quantity" for="nombre">Nombre</label>
-                            <input type="text" id="nombre" tabindex='1'>
-                            <label class="quantity" for="cantidad">Cantidad</label>
-                            <input type="number" id="cantidad" tabindex='2'>
-                            <label class="quantity" for="descripcion">Descripcion</label>
-                            <textarea id="descripcion"></textarea>
+            <div class="imagen">  
+                <img class="producto"src="{{url_for('static', filename='img/producto.jpg')}}" alt="producto">
+            </div>
+            <div class="divform">
+                <form class="formularioN" action="">
+                        <div>
+                            <label class="quantity" for="cantidad">cantidad</label>    
+                            <input class="quantity1" type="number" id="cantidad">
                         </div>
-                    </form>
-                </div>
-            </section>
-            <div>
-                <input class="boton" type="submit" value="Actualizar">
+                        <input class="boton" type="submit" value="Actualizar">
+                </form>
             </div>
         </div>
         </div>
     </div>
 
     <footer>
-        
+
     </footer>
 
-    <script src="./js/admin.js"></script>
+    <script src="{{url_for('static', filename='js/admin.js')}}"></script>
 </body>
 </html>

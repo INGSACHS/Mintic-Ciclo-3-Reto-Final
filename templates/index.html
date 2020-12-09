@@ -9,9 +9,9 @@
     <title>Inventario Cafeteria</title>
 
     <!--Importar referencias-->
-    <link rel="shortcut icon" href="./img/coffee.png">
-    <link rel="stylesheet" href="./Styles/login.css">
-    <script src="./js/login.js"></script>
+    <link rel="shortcut icon" href="{{url_for('static', filename='img/coffee.png')}}">
+    <link rel="stylesheet" href="{{url_for ('static', filename='Styles/login.css' )}}">
+    <script type="text/javascript" src="{{url_for('static', filename='js/login.js')}}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
 </head>
@@ -21,30 +21,34 @@
 <body>
 
     <!-- Popup Olvido Contraseña-->
-    <div class="popup" id="popup">
-        <div class="overlay"></div>
-        <div class="content">
-            <div class="close-btn" onclick="mostrarPopup()">&times;</div>
-            <fieldset>
-                <legend class="font_leyenda">Olvido su contraseña?</legend>
-                <div>
-                    <p class="font_parrafo">Ingrese la dirección de correo electrónico que utilizó para registrarse.
-                        <br> Enviaremos un mensaje con instrucciones para recuperar el acceso.
-                    </p>
-                    <form action="" method="POST" name="formulario_password" class="form_password"
-                        onsubmit="return validarDatosFormularioPassword();">
-                        <label for="email" class="font_etiquetas">Dirección de correo electrónico</label>
-                        <div class="entrada_con_icono">
-                            <input type="text" name="email" id="email" placeholder="Correo electrónico"
-                                class="font_etiquetas">
-                            <i class="fa fa-at fa-lg fa-fw" aria-hidden="true"></i>
-                        </div>
-                        <input class="boton" type="submit" value="Recuperar contraseña">
-                    </form>
-                </div>
-            </fieldset>
+    
+        <div class="popup" id="popup">
+            <div class="overlay"></div>
+            <div class="content">
+                <div class="close-btn" onclick="mostrarPopup()">&times;</div>
+                <fieldset>
+                    <legend class="font_leyenda">Olvido su contraseña?</legend>
+                    <div>
+                        <p class="font_parrafo">Ingrese la dirección de correo electrónico que utilizó para registrarse.
+                            <br> Enviaremos un mensaje con instrucciones para recuperar el acceso.
+                        </p>
+                        <form action="/recuperar" method="POST" name="formulario_password" class="form_password"
+                            onsubmit="return validarDatosFormularioPassword();">
+                            <label for="email" class="font_etiquetas">Dirección de correo electrónico</label>
+                            <div class="entrada_con_icono">
+                                <input type="text" name="email" id="email" placeholder="Correo electrónico"
+                                    class="font_etiquetas">
+                                <i class="fa fa-at fa-lg fa-fw" aria-hidden="true"></i>
+                            </div> 
+                            <input class="boton" type="submit" value="Recuperar contraseña">
+                        </form>
+
+                    </div>
+                </fieldset>
         </div>
     </div>
+
+
 
     <!--Menú Login-->
     <main>

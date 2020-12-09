@@ -6,9 +6,9 @@ function mostrarPopup() {
 //Función para mostrar la página siguiente al logeo
 function mostrarPagina(opcion) {
     if (opcion == 1) {
-        window.open("../admin.html", "_self");
+        window.open("{{url_for('administrador')}}", "_self");
     } else if (opcion == 2) {
-        window.open("../general.html", "_self");
+        window.open("{{url_for('usuario')}}", "_self");
     }
     return false;
 }
@@ -68,13 +68,16 @@ function validarDatosFormularioPassword() {
     let formatoCorreo = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     let email = document.getElementById("email")
 
+
     //Validar los datos ingresados
     if (email.value != "") {
-        console.log(email.value);
+        
         if (!(/^\s+$/.test(email.value))) {
             if (email.value.match(formatoCorreo)) {
-                /* alert("Correo electrónico: " + email.value); */
-                alert("Correo de recuperación de contraseña enviado");
+                
+                
+                console.log("Correo Enviado");
+                
             } else {
                 alert("EL correo electrónico ingresado es invalido. Ingrese nuevamente el correo");
             }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuario General</title>
-    <link rel="stylesheet" href="./Styles/general.css">
+    <link rel="stylesheet" href="{{url_for ('static', filename='Styles/general.css' )}}">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 </head>
@@ -20,7 +20,7 @@
             </div>
             <div class="opciones">
                 <i class="fas fa-search fa-lg fa-fw" aria-hidden="true"></i>
-                <a onclick="location.href = 'inventarioGeneral.html'">Buscar Producto</a>
+                <a href="{{url_for('inventarioGeneral')}} ">Buscar Producto</a>
             </div>
         </aside>
         <section>
@@ -43,6 +43,6 @@
         </section>  
     </main>
 
-    <script src="./js/admin.js"></script>
+    <script src="{{url_for('static', filename='js/admin.js')}}"></script>
 </body>
 </html>
