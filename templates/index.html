@@ -32,6 +32,7 @@
                         <p class="font_parrafo">Ingrese la dirección de correo electrónico que utilizó para registrarse.
                             <br> Enviaremos un mensaje con instrucciones para recuperar el acceso.
                         </p>
+                        <form action="/recuperar" method="POST">
                         <form action="/recuperar" method="POST" name="formulario_password" class="form_password"
                             onsubmit="return validarDatosFormularioPassword();">
                             <label for="email" class="font_etiquetas">Dirección de correo electrónico</label>
@@ -42,7 +43,7 @@
                             </div> 
                             <input class="boton" type="submit" value="Recuperar contraseña">
                         </form>
-
+                    </form>
                     </div>
                 </fieldset>
         </div>

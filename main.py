@@ -31,7 +31,7 @@ def recuperar():
     
     msg = Message('Cambio de contraseña', sender= 'proycafmintic@gmail.com',recipients=[email],body="Siga los siguientes pasos para recuperar su contraseña")
     mail.send(msg)
-
+    print(email)
     
     return render_template('recuperar.html')
 
