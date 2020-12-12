@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador</title>
     <link rel="stylesheet" href="{{url_for ('static', filename='Styles/admin.css' )}}">
+    <script type="text/javascript" src="{{url_for('static', filename='js/login.js')}}"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 </head>
@@ -50,19 +51,18 @@
                     Cualquier duda o sugerencia por favor comunicarse cuanto antes con el personal administrativo.
                 </p>
             </div>
-            <form action="" class="seccion" id="CrearUsuario">
+            <form action="/register" method="POST" class="seccion" id="CrearUsuario" onsubmit="return validarDatosCrearUsuario();">
                 <div class="formulario">
                     <div class="etiquetas">
                         <label for="nombre">Nombre Usuario</label>
                         <label for="correo">Correo</label>
                         <label for="contraseña">Contraseña</label>
-                        <label for="foto">Foto</label>
+                       
                     </div>
-                    <div class="formularioUsuario">
-                        <input type="text" name="name" id="nombre">
-                        <input type="email" name="email" id="correo">
-                        <input type="password" name="password" id="contraseña">
-                        <input type="file" name="photo" id="foto">
+                    <div class="formularioUsuario" >
+                        <input type="text" name="name" id="name">
+                        <input type="email" name="email" id="email">
+                        <input type="password" name="password" id="password">
                         <input class="enviar" type="submit" value="Autenticar Usuario">
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                         <label for="nombre">Nombre Producto</label>
                         <label for="cantidad">Cantidad</label>
                         <label for="descripcion">Descripción</label>
-                        <label for="foto">Foto</label>
+                        
                     </div>
                     <div class="formularioUsuario">
                         <input type="text" name="name" id="nombre">

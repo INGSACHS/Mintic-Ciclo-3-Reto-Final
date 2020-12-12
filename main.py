@@ -1,9 +1,13 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, flash, redirect
 import smtplib
 import json
 from flask_mail import Mail
 from flask_mail import Message
-
+import sqlite3
+from sqlite3 import Error
+from flask import g
+import flash
+from db import get_db, close_db
 
 
 app = Flask(__name__)
@@ -51,6 +55,28 @@ def inventario():
 @app.route('/inventarioGeneral.html')
 def inventarioGeneral():
     return render_template('inventarioGeneral.html')
+
+
+@app.route( '/register', methods=('GET', 'POST') )
+def register():
+    username = request.form['name']
+    password = request.form['password']
+    email = request.form['email']
+    error = None
+    db = get_db()
+    
+    if(username != ""):
+        if(password != ""):
+            if(email != ""):
+                db.execute('INSERT INTO TBL_USUARIO (NOMBRE, PASSWORD, EMAIL,ROL) VALUES (?,?,?,?)',
+                (username, password, email, 2))
+    else:
+        pass
+    
+    db.commit()
+    close_db()
+
+    return redirect(url_for('.administrador'))
 
 if __name__ == "__main__":
     app.run(debug = True)
