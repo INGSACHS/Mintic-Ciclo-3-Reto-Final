@@ -129,6 +129,41 @@ def new_product():
     return redirect(url_for('.administrador'))
 
 
+#validar usuario en el login
+@app.route('/validarUsuario',methods=('GET','POST'))
+def validarUsuario():
+    if request.method == 'POST':
+            db = get_db()
+            error = None
+            username = request.form['username']
+            password = request.form['password']
+
+            if not username:
+                error = 'Debes ingresar el usuario'
+                flash(error)
+                return render_template('index.html', error="error")
+
+            if not password:
+                error = 'Contraseña requerida'
+                flash(error)
+                return render_template('index.html', error="error")
+            user = db.execute(
+                'SELECT * FROM TBL_USUARIO WHERE EMAIL = ? AND PASSWORD = ?', (username, password)
+            ).fetchone()
+
+            if user is None:
+                error = 'Usuario o contraseña inválidos'
+            else:
+                if (user[4] ==1):
+                    return render_template('admin.html')
+                else:
+                    return usuario()
+
+            
+    return render_template('index.html', error="error")
+
+
+
 if __name__ == "__main__":
     app.run(debug = True)
     mail.init_app(app)

@@ -21,18 +21,18 @@
 <body>
 
     <!-- Popup Olvido Contraseña-->
-    
-        <div class="popup" id="popup">
-            <div class="overlay"></div>
-            <div class="content">
-                <div class="close-btn" onclick="mostrarPopup()">&times;</div>
-                <fieldset>
-                    <legend class="font_leyenda">Olvido su contraseña?</legend>
-                    <div>
-                        <p class="font_parrafo">Ingrese la dirección de correo electrónico que utilizó para registrarse.
-                            <br> Enviaremos un mensaje con instrucciones para recuperar el acceso.
-                        </p>
-                        <form action="/recuperar" method="POST">
+
+    <div class="popup" id="popup">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="mostrarPopup()">&times;</div>
+            <fieldset>
+                <legend class="font_leyenda">Olvido su contraseña?</legend>
+                <div>
+                    <p class="font_parrafo">Ingrese la dirección de correo electrónico que utilizó para registrarse.
+                        <br> Enviaremos un mensaje con instrucciones para recuperar el acceso.
+                    </p>
+                    <form action="/recuperar" method="POST">
                         <form action="/recuperar" method="POST" name="formulario_password" class="form_password"
                             onsubmit="return validarDatosFormularioPassword();">
                             <label for="email" class="font_etiquetas">Dirección de correo electrónico</label>
@@ -40,12 +40,12 @@
                                 <input type="text" name="email" id="email" placeholder="Correo electrónico"
                                     class="font_etiquetas">
                                 <i class="fa fa-at fa-lg fa-fw" aria-hidden="true"></i>
-                            </div> 
+                            </div>
                             <input class="boton" type="submit" value="Recuperar contraseña">
                         </form>
                     </form>
-                    </div>
-                </fieldset>
+                </div>
+            </fieldset>
         </div>
     </div>
 
@@ -56,7 +56,7 @@
         <div class="titulo">
             <h1 class="font_encabezado">Inventario Cafetería</h1>
         </div>
-        <form action="" method="POST" name="formulario_login" onsubmit="return validarDatosFormularioLogin();">
+        <form action="/validarUsuario" method="POST" name="formulario_login">
             <label for="username" class="font_etiquetas">Nombre de Usuario:</label>
             <div class="entrada_con_icono">
                 <input type="text" name="username" id="username" placeholder="Nombre" class="font_etiquetas">
@@ -71,6 +71,15 @@
                 <a class="estilo_link" onclick="mostrarPopup();">¿Olvidastes tu contraseña?</a>
                 <input class="estilo_boton" type="submit" value="Iniciar Sesión">
             </div>
+            {% with error= get_flashed_messages() %}
+            {% if error %}
+            <ul class=flashes>
+                {% for message in error %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
         </form>
     </main>
 
