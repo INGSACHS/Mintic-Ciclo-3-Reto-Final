@@ -10,6 +10,7 @@
 
 </head>
 <body>
+
     <header>
         <h1>Perfil de Administrador</h1>
     </header>
@@ -67,7 +68,7 @@
                     </div>
                 </div>
             </form>
-            <form action="" class="seccion" id="CrearProducto">
+            <form action="/producto" method="POST" class="seccion" id="CrearProducto" onsubmit="return validarDatosCrearProducto();">
                 <div class="formulario">
                     <div class="etiquetas">
                         <label for="nombre">Nombre Producto</label>
@@ -76,10 +77,10 @@
                         
                     </div>
                     <div class="formularioUsuario">
-                        <input type="text" name="name" id="nombre">
-                        <input type="number" name="quantity" id="cantidad">
-                        <input type="text" name="description" id="descripcion">
-                        <input type="file" name="photo" id="foto">
+                        <input type="text" name="namep" id="namep">
+                        <input type="number" name="quantity" id="quantity">
+                        <input type="text" name="description" id="description">
+                        <input type="file" name="photo" id="photo">
                         <input class="enviar" type="submit" value="Crear Producto">
                     </div>
                 </div>

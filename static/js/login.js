@@ -124,6 +124,70 @@ function validarDatosCrearUsuario() {
 
 }
 
+//Función validar datos ingresador para crear un nuevo producto
+function validarDatosCrearProducto() {
+
+    //Variables
+    let expresion = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
+    let nProducto = document.getElementById("namep");
+    let quantity = document.getElementById("quantity");
+    let description = document.getElementById("description");
+    console.log(name.value);
+    /*if(name.value != null){
+        if (!(/^\s+$/.test(name.value))) {
+            if(quantity.value =! null){ 
+                if(quantity.value <= 0){
+                    if(!(/^\s+$/.test(quantity.value))){
+                        if(description.value =! null){
+                           if(!(/^\s+$/.test(description.value))){
+                                console.log(name.value);
+                           } else {
+                               alert("Digite una descrpción valida, sin simbolos");
+                           }
+
+                        } else {
+                            alert("La descripcion no puede estar vacia");
+                        }
+
+                    } else {
+                        alert("Digite una cantidad valida");
+                    }
+
+                } else{ 
+                alert("la cantidad de productos no puede ser menor o igual a cero");
+                }
+            }
+        } else{ 
+            alert("Debe ingresar un nombre de producto valido");
+            name.value = "";
+        }
+    } else {
+        alert("El nombre del producto no debe estar vacio")
+    }
+
+*/
+    if (email.value != "") {
+        
+        if (!(/^\s+$/.test(email.value))) {
+         if (email.value.match(formatoCorreo)) {
+            
+            
+             console.log("Correo Enviado");
+            
+         } else {
+             alert("EL correo electrónico ingresado es invalido. Ingrese nuevamente el correo");
+         }
+        } else {
+            alert("Debe ingresar un correo electrónico valido");
+            email.value = "";
+        }
+    } else {
+    alert("El campo 'Correo electrónico' no debe estar en blanco");
+    }
+
+}
+
+
 //Función para vaidar los datos ingresados en el campo del popup
 function validarDatosFormularioPassword() {
 
