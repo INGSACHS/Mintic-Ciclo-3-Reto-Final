@@ -8,6 +8,8 @@ from sqlite3 import Error
 from flask import g
 import os
 from db import get_db, close_db
+from werkzeug.security import generate_password_hash, check_password_hash
+from random import choice
 
 
 
@@ -64,15 +66,26 @@ def eliminar(idP):
     #idProducto = request.form['idP']
     print(idP)
     con = sqlite3.connect('Inventario.db')
-    cursor = con.cursor()
-    cursor.execute('SELECT * FROM TBL_PRODUCTO WHERE CODIGO =2')
-
-    rows = cursor.fetchall()
-
-    for row in rows:
-        print(row)
+    cursor = con.cursor()    
+    cursor.execute("delete from TBL_PRODUCTO where CODIGO=?", (idP,))
+    con.commit()
     
-    return redirect(url_for('.inventario'))
+    return inventario()
+@app.route('/editar/<int:idP>', methods=('GET','POST'))
+def editar(idP):
+    #idProducto = request.form['idP']
+    print(idP)
+    con = sqlite3.connect('Inventario.db')
+    cursor = con.cursor()    
+    row=cursor.execute("SELECT * FROM TBL_PRODUCTO WHERE CODIGO= ?", (idP,)).fetchone()
+    nombre=row[1]
+    id=row[0]
+    descripcion=row[3]
+    imagen=row[4]
+    
+    
+         
+    return inventario()
 
 
 
@@ -85,6 +98,7 @@ def inventarioGeneral():
 def register():
     username = request.form['name']
     password = request.form['password']
+    hashpassword= generate_password_hash(password)
     email = request.form['email']
     
     db = get_db()
@@ -93,12 +107,18 @@ def register():
         if(password != ""):
             if(email != ""):
                 db.execute('INSERT INTO TBL_USUARIO (NOMBRE, PASSWORD, EMAIL,ROL) VALUES (?,?,?,?)',
-                (username, password, email, 2))
+                (username, hashpassword, email, 2))
+                cuerpo_mensaje="Su correo ha sido registrado, su contraseña de ingreso es "+password
+                msg = Message('Usuario registrado', sender= 'proycafmintic@gmail.com',recipients=[email],body=cuerpo_mensaje)
+                mail.send(msg)
     else:
         pass
     
     db.commit()
-    close_db()
+    close_db()    
+    
+    
+    print(email)
 
     return redirect(url_for('.administrador'))
 
@@ -135,32 +155,52 @@ def validarUsuario():
     if request.method == 'POST':
             db = get_db()
             error = None
-            username = request.form['username']
-            password = request.form['password']
+            username = request.form['correo']
+            print(username)
+            password2 = request.form['password']
 
             if not username:
                 error = 'Debes ingresar el usuario'
                 flash(error)
                 return render_template('index.html', error="error")
 
-            if not password:
+            if not password2:
                 error = 'Contraseña requerida'
                 flash(error)
                 return render_template('index.html', error="error")
+
             user = db.execute(
-                'SELECT * FROM TBL_USUARIO WHERE EMAIL = ? AND PASSWORD = ?', (username, password)
-            ).fetchone()
+                'SELECT * FROM TBL_USUARIO WHERE EMAIL = ?', (username,)).fetchone()
 
             if user is None:
                 error = 'Usuario o contraseña inválidos'
             else:
-                if (user[4] ==1):
-                    return render_template('admin.html')
-                else:
-                    return usuario()
+                if check_password_hash(user[2],password2):
+                    if (user[4] == 1):
+                        return render_template('admin.html')
+                    else:
+                        return usuario()
 
             
     return render_template('index.html', error="error")
+
+""" @app.route('/mirar')
+def mirar()
+longitud=8
+valores="0123456789abcdefghijklmnoqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<=>@&%+"
+p=""
+p= p.join([choice(valores) for i in range(longitud)])
+return p 
+
+
+
+@app.route('/contrasena', method="POST")
+def contraseña():
+
+    password=request.form['password']
+    hashpassword= generate_password_hash(password)
+    ##if check password_hash(user['contraseña],password)
+    return hashpassword """
 
 
 

@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador</title>
     <link rel="stylesheet" href="{{url_for ('static', filename='Styles/admin.css' )}}">
     <script type="text/javascript" src="{{url_for('static', filename='js/login.js')}}"></script>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
 </head>
+
 <body>
 
     <header>
         <h1>Perfil de Administrador</h1>
     </header>
-    
+
     <main>
         <aside>
             <div class="titulo">Menú de Opciones</div>
             <div class="opciones">
                 <i class="fas fa-user-tag fa-lg fa-fw" aria-hidden="true"></i>
-                <a onclick="openSection(event, 'CrearUsuario')">Crear Usuario</a>                
+                <a onclick="openSection(event, 'CrearUsuario')">Crear Usuario</a>
             </div>
             <div class="opciones">
                 <i class="fas fa-coffee fa-lg fa-fw" aria-hidden="true"></i>
@@ -46,21 +49,23 @@
                     Usted ha ingresado de manera exitosa al aplicativo de gestión de inventarios de la Cafetería UNI.
                 </p>
                 <p>
-                    Dentro de esta sección usted podrá gestionar la creación de usuarios, creación de productos, y búsqueda de los mismos para su actualización. Esperamos que la plataforma sea de su completo agrado. 
+                    Dentro de esta sección usted podrá gestionar la creación de usuarios, creación de productos, y
+                    búsqueda de los mismos para su actualización. Esperamos que la plataforma sea de su completo agrado.
                 </p>
                 <p>
                     Cualquier duda o sugerencia por favor comunicarse cuanto antes con el personal administrativo.
                 </p>
             </div>
-            <form action="/register" method="POST" class="seccion" id="CrearUsuario" onsubmit="return validarDatosCrearUsuario();">
+            <form action="/register" method="POST" class="seccion" id="CrearUsuario"
+                onsubmit="return validarDatosCrearUsuario();">
                 <div class="formulario">
                     <div class="etiquetas">
                         <label for="nombre">Nombre Usuario</label>
                         <label for="correo">Correo</label>
                         <label for="contraseña">Contraseña</label>
-                       
+
                     </div>
-                    <div class="formularioUsuario" >
+                    <div class="formularioUsuario">
                         <input type="text" name="name" id="name">
                         <input type="email" name="email" id="email">
                         <input type="password" name="password" id="password">
@@ -68,13 +73,14 @@
                     </div>
                 </div>
             </form>
-            <form action="/producto" method="POST" class="seccion" id="CrearProducto" onsubmit="return validarDatosCrearProducto();">
+            <form action="/producto" method="POST" class="seccion" id="CrearProducto"
+                onsubmit="return validarDatosCrearProducto();">
                 <div class="formulario">
                     <div class="etiquetas">
                         <label for="nombre">Nombre Producto</label>
                         <label for="cantidad">Cantidad</label>
                         <label for="descripcion">Descripción</label>
-                        
+
                     </div>
                     <div class="formularioUsuario">
                         <input type="text" name="namep" id="namep">
@@ -85,9 +91,10 @@
                     </div>
                 </div>
             </form>
-        </section>  
+        </section>
     </main>
 
     <script src="{{url_for('static', filename='js/admin.js')}}"></script>
 </body>
+
 </html>

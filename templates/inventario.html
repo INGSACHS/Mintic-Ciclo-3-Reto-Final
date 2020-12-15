@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,25 +9,51 @@
     <!--Titulo de la pagina -->
     <title>Inventario | Cafeteria</title>
     <!-- Conexion con la carpeta de css-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/styles.css' ) }}">
-    
-   </head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/styles.css')}}">
+    <script type="text/javascript" src="{{url_for('static', filename='js/admin.js')}}"></script>
+
+</head>
+
 <body>
-    
+
     <header>
         <h1 class="titulo">Inventario para cafeteria </h1>
-        
+
     </header>
+    <div class="popup" id="popup">
+        <div class="overlay"></div>
+        <div class="content">
+            <form action="/producto" method="POST" class="seccion" id="CrearProducto"
+                onsubmit="return validarDatosCrearProducto();">
+                <div class="formulario">
+                    <div class="etiquetas">
+                        <label for="nombre">Nombre Producto</label>
+                        <label for="cantidad">Cantidad</label>
+                        <label for="descripcion">Descripción</label>
+
+                    </div>
+                    <div class="formularioUsuario">
+                        <input type="text" name="namep" id="namep">
+                        <input type="number" name="quantity" id="quantity">
+                        <input type="text" name="description" id="description">
+                        <input type="file" name="photo" id="photo">
+                        <input class="enviar" type="submit" value="Crear Producto">
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
 
     <main>
-        
-    <section>
-      <div class="datos">
-          <div class="headerTable">
-            <div class="tableTools"></div>
-                <ul>
-                    <li><span><input type="checkbox"></span></li>
-                       <li>
+
+        <section>
+            <div class="datos">
+                <div class="headerTable">
+                    <div class="tableTools"></div>
+                    <ul>
+                        <li><span><input type="checkbox"></span></li>
+                        <li>
                             <button>
                                 <i class="material-icons">add</i>
                             </button>
@@ -42,57 +69,62 @@
                             </button>
                         </li>
                         <li>
-                            
+
                         </li>
-                </ul>
-          </div>
-        
-
-      </div>
-        <table class="tabla">
-            
-            <tr>
-                <th></th>
-                <th>Miniatura</th>
-                <th>Nombre</th>
-                <th>ID producto</th>
-                <th>Cantidad</th>
-                <th>descripción</th>
-                <th>Acción</th>
-            </tr>
-            {% for row in rows %}
-            <tr>
-                <form action="/eliminar" method="POST">
-                <td></td>
-                <td>{{ 0 }}</td>
-                <td>{{ row[1] }}</td>
-                <td>{{ row[0] }}</td>
-                <td>{{ row[2] }}</td>
-                <td>{{ row[3] }}</td>
-                <td >
-                    <li>
-                    <button class="botones">
-                        <a href="{{ url_for('eliminar',idP=row[0])}}">editar</a>
-                            <!--<i class="material-icons">edit</i>-->
-                        </button>
-                    </li>
-                    <li>
-                        <button class="botones">
-                            <i class="material-icons">delete</i>
-                        </button>
-                    </li>
-                </td>
-                </form>
-            </tr>
-            {% endfor %}
-        </table>
+                    </ul>
+                </div>
 
 
+            </div>
+            <table class="tabla">
 
-    </section>
-    
+                <tr>
+                    <th></th>
+                    <th>Miniatura</th>
+                    <th>Nombre</th>
+                    <th>ID producto</th>
+                    <th>Cantidad</th>
+                    <th>descripción</th>
+                    <th>Acción</th>
+                </tr>
+                {% for row in rows %}
+                <tr>
+
+                    <td></td>
+                    <td>{{ 0 }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>
+
+                        <li>
+
+
+                            <button>
+                                <a type="submit" onclick="togglePopup();">Editar</a>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button class="botones">
+                                <a href="{{ url_for('eliminar',idP=row[0])}}">Eliminar</a>
+                            </button>
+                        </li>
+                    </td>
+
+
+                </tr>
+                {% endfor %}
+            </table>
+
+
+
+        </section>
+
     </main>
 
 
 </body>
+
 </html>
