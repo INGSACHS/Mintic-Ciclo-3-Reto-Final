@@ -106,54 +106,18 @@ li {
     align-items: baseline;
 }
 
-.popup .overlay {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1;
+/* .seccion {
     display: none;
+} */
+
+.formularioUsuario {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
 }
 
-.popup .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    background-image: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .5)), url(../img/taza_Cafe.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    width: 390px;
-    height: 370px;
-    z-index: 2;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.popup .close-btn {
-    cursor: pointer;
-    position: absolute;
-    right: 10px;
-    top: 25px;
-    width: 30px;
-    height: 30px;
-    background: #222;
-    color: #fff;
-    font-size: 25px;
-    font-weight: 600;
-    line-height: 30px;
-    text-align: center;
-    border-radius: 50%;
-}
-
-.popup.active .overlay {
-    display: block;
-}
-
-.popup.active .content {
-    transition: all 300ms ease-in-out;
-    transform: translate(-50%, -50%) scale(1);
+.formulario {
+    display: flex;
+    flex-direction: row;
+    padding: 5%;
 }

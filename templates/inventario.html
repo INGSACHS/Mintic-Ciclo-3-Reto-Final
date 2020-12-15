@@ -20,62 +20,37 @@
         <h1 class="titulo">Inventario para cafeteria </h1>
 
     </header>
-    <div class="popup" id="popup">
-        <div class="overlay"></div>
-        <div class="content">
-            <form action="/producto" method="POST" class="seccion" id="CrearProducto"
-                onsubmit="return validarDatosCrearProducto();">
-                <div class="formulario">
-                    <div class="etiquetas">
-                        <label for="nombre">Nombre Producto</label>
-                        <label for="cantidad">Cantidad</label>
-                        <label for="descripcion">Descripción</label>
 
-                    </div>
-                    <div class="formularioUsuario">
-                        <input type="text" name="namep" id="namep">
-                        <input type="number" name="quantity" id="quantity">
-                        <input type="text" name="description" id="description">
-                        <input type="file" name="photo" id="photo">
-                        <input class="enviar" type="submit" value="Crear Producto">
-                    </div>
-                </div>
-            </form>
+    <form action="/producto" method="POST" id="CrearProducto" onsubmit="return validarDatosCrearProducto();">
+        <div class="formulario">
+            <div class="etiquetas">
+                <label for="nombre">Nombre Producto</label>
+                <label for="cantidad">Cantidad</label>
+                <label for="descripcion">Descripción</label>
 
+            </div>
+            <div class="formularioUsuario">
+                <input type="text" name="namep" id="namep">
+                <input type="number" name="quantity" id="quantity">
+                <input type="text" name="description" id="description">
+                <input type="file" name="photo" id="photo">
+                <input class="enviar" type="submit" value="Crear Producto">
+            </div>
         </div>
-    </div>
+    </form>
 
     <main>
 
         <section>
-            <div class="datos">
-                <div class="headerTable">
-                    <div class="tableTools"></div>
-                    <ul>
-                        <li><span><input type="checkbox"></span></li>
-                        <li>
-                            <button>
-                                <i class="material-icons">add</i>
-                            </button>
-                        </li>
-                        <li>
-                            <button>
-                                <i class="material-icons">edit</i>
-                            </button>
-                        </li>
-                        <li>
-                            <button>
-                                <i class="material-icons">delete</i>
-                            </button>
-                        </li>
-                        <li>
+            <form action="/filtrar" method="GET">
 
-                        </li>
-                    </ul>
+                <input class="barraBusqueda" type="search" id="buscar" name="Buscar" placeholder="Buscar">
+                <div class="botones">
+                    <input href="{{ url_for('filtrar')}}" class="busqueda" type="submit" value="Buscar" />
+                    <input class="busqueda" type="button" value="Regresar" onclick="location.href= 'admin.html'" />
+                    <!--<a class="regresar" href="{{ url_for('administrador') }}">Regresar</a> -->
                 </div>
-
-
-            </div>
+            </form>
             <table class="tabla">
 
                 <tr>
@@ -101,8 +76,8 @@
                         <li>
 
 
-                            <button>
-                                <a type="submit" onclick="togglePopup();">Editar</a>
+                            <button class="botones">
+                                <a href="{{ url_for('editar',nombre=row[1],cantidad=row[2],desc=row[3])}}">Editar</a>
                             </button>
                         </li>
 
@@ -123,6 +98,7 @@
         </section>
 
     </main>
+    <script src="{{url_for('static', filename='js/admin.js')}}"></script>
 
 
 </body>

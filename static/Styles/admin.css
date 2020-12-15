@@ -43,18 +43,18 @@ aside {
     text-decoration: underline;
 }
 
-.opciones > i {
+.opciones>i {
     margin-left: 50px;
     color: rgb(211, 211, 211);
 }
 
-.opciones > a {
+.opciones>a {
     margin-left: 10%;
     text-decoration: none;
     cursor: pointer;
     font-size: large;
     font-family: Architects Daughter;
-    
+
 }
 
 section {
@@ -62,7 +62,7 @@ section {
     width: 60%;
     height: 450px;
     border-radius: 20px;
-    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("../img/Coffee.jpg");
+    background: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .5)), url("../img/Coffee.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;

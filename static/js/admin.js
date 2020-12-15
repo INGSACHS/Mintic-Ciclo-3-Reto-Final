@@ -7,7 +7,7 @@ function openSection(evt, sectionName) {
         x[i].style.display = "none";
     }
     document.getElementById(sectionName).style.display = "block";
-    
+
     if (y.style.display === "none") {
         y.style.display = "none";
     } else {
@@ -15,6 +15,6 @@ function openSection(evt, sectionName) {
     }
 }
 
-function togglePopup(){
+function togglePopup() {
     document.getElementById("popup-1").classList.toggle("active");
 }

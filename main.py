@@ -71,22 +71,33 @@ def eliminar(idP):
     con.commit()
     
     return inventario()
-@app.route('/editar/<int:idP>', methods=('GET','POST'))
-def editar(idP):
+    
+""" @app.route('/editar/<nombre>/<cantidad>/<desc>', methods=('GET','POST'))
+def editar(nombre,cantidad,desc):
     #idProducto = request.form['idP']
-    print(idP)
+    print(nombre )
+    print(cantidad)
+    print(desc)
     con = sqlite3.connect('Inventario.db')
     cursor = con.cursor()    
     row=cursor.execute("SELECT * FROM TBL_PRODUCTO WHERE CODIGO= ?", (idP,)).fetchone()
-    nombre=row[1]
+     nombre=row[1]
     id=row[0]
     descripcion=row[3]
-    imagen=row[4]
-    
-    
-         
-    return inventario()
+    imagen=row[4]        
+    return render_template('inventario.html') """
 
+@app.route('/filtrar',methods=('GET','POST'))
+def filtrar():
+    palabra=request.args.get('Buscar')
+    con = sqlite3.connect('Inventario.db')
+    cursor = con.cursor()
+    consulta= "%"+palabra+"%"
+    cursor.execute('SELECT * FROM TBL_PRODUCTO where NOMBRE LIKE ?',(consulta,))
+    rows = cursor.fetchall()
+    print(rows)
+
+    return render_template('inventario.html',rows=rows)
 
 
 @app.route('/inventarioGeneral.html')
