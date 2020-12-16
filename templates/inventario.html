@@ -21,34 +21,17 @@
 
     </header>
 
-    <form action="/producto" method="POST" id="CrearProducto" onsubmit="return validarDatosCrearProducto();">
-        <div class="formulario">
-            <div class="etiquetas">
-                <label for="nombre">Nombre Producto</label>
-                <label for="cantidad">Cantidad</label>
-                <label for="descripcion">Descripción</label>
-
-            </div>
-            <div class="formularioUsuario">
-                <input type="text" name="namep" id="namep">
-                <input type="number" name="quantity" id="quantity">
-                <input type="text" name="description" id="description">
-                <input type="file" name="photo" id="photo">
-                <input class="enviar" type="submit" value="Crear Producto">
-            </div>
-        </div>
-    </form>
-
     <main>
 
         <section>
             <form action="/filtrar" method="GET">
-
-                <input class="barraBusqueda" type="search" id="buscar" name="Buscar" placeholder="Buscar">
-                <div class="botones">
-                    <input href="{{ url_for('filtrar')}}" class="busqueda" type="submit" value="Buscar" />
-                    <input class="busqueda" type="button" value="Regresar" onclick="location.href= 'admin.html'" />
-                    <!--<a class="regresar" href="{{ url_for('administrador') }}">Regresar</a> -->
+                <div class="contenedor-busqueda">
+                    <input class="barraBusqueda" type="search" id="buscar" name="Buscar" placeholder="Buscar...">
+                    <div class="botones">
+                        <input href="{{ url_for('filtrar')}}" class="busqueda" type="submit" value="Buscar" />
+                        <input class="regresar" type="button" value="Regresar" onclick="location.href= 'admin.html'" />
+                        <!--<a class="regresar" href="{{ url_for('administrador') }}">Regresar</a> -->
+                    </div>
                 </div>
             </form>
             <table class="tabla">
@@ -77,7 +60,7 @@
 
 
                             <button class="botones">
-                                <a href="{{ url_for('editar',nombre=row[1],cantidad=row[2],desc=row[3])}}">Editar</a>
+                                <a href=>Editar</a>
                             </button>
                         </li>
 

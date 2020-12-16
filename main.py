@@ -1,4 +1,5 @@
-from flask import Flask, render_template, url_for, request, flash, redirect, flash
+import functools
+from flask import Flask, render_template, url_for, request, flash, redirect, flash, session, g
 import smtplib
 import json
 from flask_mail import Mail
@@ -12,188 +13,219 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from random import choice
 
 
-
 app = Flask(__name__)
-app.config.update(    MAIL_SERVER = 'smtp.gmail.com',
-    MAIL_PORT = 587,
-    MAIL_USE_TLS = True,
-    MAIL_USE_SSL = False,
-    MAIL_USERNAME = 'proycafmintic@gmail.com',
-    MAIL_PASSWORD = '12345ABcd*',
-    )
+app.config.update(MAIL_SERVER='smtp.gmail.com',
+                  MAIL_PORT=587,
+                  MAIL_USE_TLS=True,
+                  MAIL_USE_SSL=False,
+                  MAIL_USERNAME='proycafmintic@gmail.com',
+                  MAIL_PASSWORD='12345ABcd*',
+                  )
 mail = Mail(app)
+app.secret_key = os.urandom(24)
+UPLOAD_FOLDER = os.path.abspath("./resources/")
+
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('index'))
+        return view(**kwargs)
+    return wrapped_view
+
+
+@app.before_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = get_db().execute(
+            'SELECT * FROM TBL_USUARIO WHERE CODIGO = ?', (user_id,)
+        ).fetchone()
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
 
 
 @app.route('/')
-
 def index():
     return render_template('index.html')
 
 
 @app.route('/recuperar', methods=['POST'])
-
+@login_required
 def recuperar():
 
     email = request.form['email']
-    
-    msg = Message('Cambio de contraseña', sender= 'proycafmintic@gmail.com',recipients=[email],body="Siga los siguientes pasos para recuperar su contraseña")
+
+    msg = Message('Cambio de contraseña', sender='proycafmintic@gmail.com',
+                  recipients=[email], body="Siga los siguientes pasos para recuperar su contraseña")
     mail.send(msg)
     print(email)
-    
+
     return render_template('recuperar.html')
 
+
 @app.route('/admin.html')
+@login_required
 def administrador():
     return render_template('admin.html')
 
 
 @app.route('/general.html')
+@login_required
 def usuario():
+
     return render_template('general.html')
 
+
 @app.route('/inventario.html')
+@login_required
 def inventario():
     con = sqlite3.connect('Inventario.db')
     cursor = con.cursor()
     cursor.execute("SELECT * FROM TBL_PRODUCTO")
     rows = cursor.fetchall()
 
-
     return render_template('inventario.html', rows=rows)
 
-@app.route('/eliminar/<int:idP>', methods=('GET','POST'))
+
+@app.route('/eliminar/<int:idP>', methods=('GET', 'POST'))
+@login_required
 def eliminar(idP):
     #idProducto = request.form['idP']
     print(idP)
     con = sqlite3.connect('Inventario.db')
-    cursor = con.cursor()    
+    cursor = con.cursor()
     cursor.execute("delete from TBL_PRODUCTO where CODIGO=?", (idP,))
     con.commit()
-    
-    return inventario()
-    
-""" @app.route('/editar/<nombre>/<cantidad>/<desc>', methods=('GET','POST'))
-def editar(nombre,cantidad,desc):
-    #idProducto = request.form['idP']
-    print(nombre )
-    print(cantidad)
-    print(desc)
-    con = sqlite3.connect('Inventario.db')
-    cursor = con.cursor()    
-    row=cursor.execute("SELECT * FROM TBL_PRODUCTO WHERE CODIGO= ?", (idP,)).fetchone()
-     nombre=row[1]
-    id=row[0]
-    descripcion=row[3]
-    imagen=row[4]        
-    return render_template('inventario.html') """
 
-@app.route('/filtrar',methods=('GET','POST'))
+    return inventario()
+
+
+@app.route('/filtrar', methods=('GET', 'POST'))
+@login_required
 def filtrar():
-    palabra=request.args.get('Buscar')
+    palabra = request.args.get('Buscar')
     con = sqlite3.connect('Inventario.db')
     cursor = con.cursor()
-    consulta= "%"+palabra+"%"
-    cursor.execute('SELECT * FROM TBL_PRODUCTO where NOMBRE LIKE ?',(consulta,))
+    consulta = "%"+palabra+"%"
+    cursor.execute(
+        'SELECT * FROM TBL_PRODUCTO where NOMBRE LIKE ?', (consulta,))
     rows = cursor.fetchall()
     print(rows)
 
-    return render_template('inventario.html',rows=rows)
+    return render_template('inventario.html', rows=rows)
 
 
 @app.route('/inventarioGeneral.html')
+@login_required
 def inventarioGeneral():
     return render_template('inventarioGeneral.html')
 
-#CREAR NUEVO USUARIO //Validaciones
-@app.route( '/register', methods=('GET', 'POST') )
+# CREAR NUEVO USUARIO //Validaciones
+
+
+@app.route('/register', methods=('GET', 'POST'))
+@login_required
 def register():
     username = request.form['name']
     password = request.form['password']
-    hashpassword= generate_password_hash(password)
+    hashpassword = generate_password_hash(password)
     email = request.form['email']
-    
+
     db = get_db()
-    
+
     if(username != ""):
         if(password != ""):
             if(email != ""):
                 db.execute('INSERT INTO TBL_USUARIO (NOMBRE, PASSWORD, EMAIL,ROL) VALUES (?,?,?,?)',
-                (username, hashpassword, email, 2))
-                cuerpo_mensaje="Su correo ha sido registrado, su contraseña de ingreso es "+password
-                msg = Message('Usuario registrado', sender= 'proycafmintic@gmail.com',recipients=[email],body=cuerpo_mensaje)
+                           (username, hashpassword, email, 2))
+                cuerpo_mensaje = "Su correo ha sido registrado, su contraseña de ingreso es "+password
+                msg = Message('Usuario registrado', sender='proycafmintic@gmail.com',
+                              recipients=[email], body=cuerpo_mensaje)
                 mail.send(msg)
     else:
         pass
-    
+
     db.commit()
-    close_db()    
-    
-    
+    close_db()
+
     print(email)
 
     return redirect(url_for('.administrador'))
 
-#CREAR NUEVO PRODUCTO //Validaciones
-@app.route( '/producto', methods=('GET', 'POST') )
+# CREAR NUEVO PRODUCTO //Validaciones
+
+
+@app.route('/producto', methods=('GET', 'POST'))
+@login_required
 def new_product():
     name_producto = request.form['namep']
-    quantity = request.form['quantity'] 
+    quantity = request.form['quantity']
     description = request.form['description']
     photo = request.form['photo']
     print(name_producto)
     db = get_db()
-    
-    
+
     if(name_producto != ""):
         if(quantity != ""):
             if(description != ""):
                 db.execute('INSERT INTO TBL_PRODUCTO (NOMBRE, CANTIDAD, DESCRIPCION , IMAGEN) VALUES (?,?,?,?)',
-                (name_producto, quantity, description, photo))
+                           (name_producto, quantity, description, photo))
 
-                
     else:
         pass
-    
+
     db.commit()
     close_db()
 
     return redirect(url_for('.administrador'))
 
 
-#validar usuario en el login
-@app.route('/validarUsuario',methods=('GET','POST'))
+# validar usuario en el login
+@app.route('/validarUsuario', methods=('GET', 'POST'))
 def validarUsuario():
     if request.method == 'POST':
-            db = get_db()
-            error = None
-            username = request.form['correo']
-            print(username)
-            password2 = request.form['password']
+        db = get_db()
+        error = None
+        username = request.form['correo']
+        print(username)
+        password2 = request.form['password']
 
-            if not username:
-                error = 'Debes ingresar el usuario'
-                flash(error)
-                return render_template('index.html', error="error")
+        if not username:
+            error = 'Debes ingresar el usuario'
+            flash(error)
+            return render_template('index.html', error="error")
 
-            if not password2:
-                error = 'Contraseña requerida'
-                flash(error)
-                return render_template('index.html', error="error")
+        if not password2:
+            error = 'Contraseña requerida'
+            flash(error)
+            return render_template('index.html', error="error")
 
-            user = db.execute(
-                'SELECT * FROM TBL_USUARIO WHERE EMAIL = ?', (username,)).fetchone()
+        user = db.execute(
+            'SELECT * FROM TBL_USUARIO WHERE EMAIL = ?', (username,)).fetchone()
 
-            if user is None:
-                error = 'Usuario o contraseña inválidos'
-            else:
-                if check_password_hash(user[2],password2):
-                    if (user[4] == 1):
-                        return render_template('admin.html')
-                    else:
-                        return usuario()
+        if user is None:
+            error = 'Usuario o contraseña inválidos'
+        else:
+            if check_password_hash(user[2], password2):
+                session.clear()
+                if (user[4] == 1):
+                    session['user_id'] = user[4]
+                    return render_template('admin.html')
 
-            
+                else:
+                    session['user_id'] = user[4]
+                    return usuario()
+
     return render_template('index.html', error="error")
+
 
 """ @app.route('/mirar')
 def mirar()
@@ -214,7 +246,6 @@ def contraseña():
     return hashpassword """
 
 
-
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug=True)
     mail.init_app(app)

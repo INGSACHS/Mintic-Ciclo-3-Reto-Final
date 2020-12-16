@@ -96,7 +96,47 @@ ul li button:hover {
 
 .botones {
     display: flex;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    justify-content: center;
+    margin: 2%;
+}
+
+.contenedor-busqueda {
+    display: flex;
     flex-direction: column;
+    align-items: center;
+
+}
+
+.barraBusqueda {
+    width: 15%;
+    margin: 5% 0% 0% 0%;
+    text-align-last: center;
+    border-color: black;
+    border-radius: 3%;
+    height: 30px;
+}
+
+.busqueda {
+    margin-right: 1%;
+
+    background-color: rgb(166, 237, 59);
+    font-weight: bold;
+    border-radius: 6px;
+    font-family: Sacramento;
+    font-size: x-large;
+    width: fit-content;
+
+}
+
+.regresar {
+    background-color: rgb(166, 237, 59);
+    font-weight: bold;
+    border-radius: 6px;
+    font-family: Sacramento;
+    font-size: x-large;
+    width: fit-content;
 }
 
 li {
