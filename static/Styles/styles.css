@@ -120,7 +120,6 @@ ul li button:hover {
 
 .busqueda {
     margin-right: 1%;
-
     background-color: rgb(166, 237, 59);
     font-weight: bold;
     border-radius: 6px;
@@ -137,6 +136,10 @@ ul li button:hover {
     font-family: Sacramento;
     font-size: x-large;
     width: fit-content;
+}
+
+.barra-edicion {
+    width: 100%;
 }
 
 li {

@@ -98,7 +98,7 @@ def inventario():
 @app.route('/eliminar/<int:idP>', methods=('GET', 'POST'))
 @login_required
 def eliminar(idP):
-    #idProducto = request.form['idP']
+    # idProducto = request.form['idP']
     print(idP)
     con = sqlite3.connect('Inventario.db')
     cursor = con.cursor()
@@ -169,15 +169,14 @@ def new_product():
     name_producto = request.form['namep']
     quantity = request.form['quantity']
     description = request.form['description']
-    photo = request.form['photo']
     print(name_producto)
     db = get_db()
 
     if(name_producto != ""):
         if(quantity != ""):
             if(description != ""):
-                db.execute('INSERT INTO TBL_PRODUCTO (NOMBRE, CANTIDAD, DESCRIPCION , IMAGEN) VALUES (?,?,?,?)',
-                           (name_producto, quantity, description, photo))
+                db.execute('INSERT INTO TBL_PRODUCTO (NOMBRE, CANTIDAD, DESCRIPCION ) VALUES (?,?,?)',
+                           (name_producto, quantity, description))
 
     else:
         pass
@@ -187,8 +186,37 @@ def new_product():
 
     return redirect(url_for('.administrador'))
 
+# Actualizar producto
+
+
+@app.route('/actualizar/<int:idP>/', methods=('GET', 'POST'))
+@login_required
+def actualizar(idP):
+    con = sqlite3.connect('Inventario.db')
+    cursor = con.cursor()
+    cursor.execute("SELECT * FROM TBL_PRODUCTO WHERE CODIGO= ?", (idP,))
+    producto = cursor.fetchone()
+    print(producto)
+    return render_template('actualizar2.html', producto=producto)
+
+
+@app.route('/saveProducto', methods=('GET', 'POST'))
+def saveProducto():
+    name_producto = request.form['namep']
+    quantity = request.form['quantity']
+    description = request.form['description']
+    idP = request.form['idP']
+    con = sqlite3.connect('Inventario.db')
+    cursor = con.cursor()
+
+    cursor.execute(
+        "UPDATE TBL_PRODUCTO SET NOMBRE= ?, CANTIDAD=?, DESCRIPCION=? where CODIGO=?", (name_producto, quantity, description, idP,))
+    con.commit()
+    return inventario()
 
 # validar usuario en el login
+
+
 @app.route('/validarUsuario', methods=('GET', 'POST'))
 def validarUsuario():
     if request.method == 'POST':
@@ -242,7 +270,7 @@ def contraseña():
 
     password=request.form['password']
     hashpassword= generate_password_hash(password)
-    ##if check password_hash(user['contraseña],password)
+    # if check password_hash(user['contraseña],password)
     return hashpassword """
 
 

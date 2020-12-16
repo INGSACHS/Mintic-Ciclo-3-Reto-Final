@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,87 +8,89 @@
     <meta name="keywords" content="Inventario, Gestos de invetario, Cafeteria">
     <title>Inventario | Cafeteria</title>
     <link rel="stylesheet" href="{{url_for ('static', filename='Styles/stylesGeneral.css' )}}">
-   </head>
+</head>
+
 <body>
-    
+
     <header>
         <h1 class="titulo">Inventario para cafeteria </h1>
     </header>
 
-    <main>   
+    <main>
         <section>
             <input class="barraBusqueda" type="search" id="buscar" name="Buscar" placeholder="Buscar">
             <div class="botones">
-                <input class="busqueda" type="submit" value="Buscar"/>
-                <input class="busqueda" type="button" value="Regresar" onclick="location.href= 'general.html'"/>
+                <input class="busqueda" type="submit" value="Buscar" />
+                <input class="busqueda" type="button" value="Regresar" onclick="location.href= 'general.html'" />
                 <!--a class="busqueda" href="{{ url_for('usuario') }}">Regresar</a>-->
             </div>
-                <div class="caja1">
-                    <img class="taza1" src="{{url_for('static', filename='img/taza.jpg')}}" alt="taza de cafe">
-                    <div class="info">
-                        <h2>Taza de cafe</h2>
-                        <div class="links">
-                            <a type="submit" class="colorEditar" onclick="togglePopup()">Editar</a>
-                        </div>
-                    </div>
-                    <div class="cantidad">
-                        <h5>Cantidad en unidades</h5>
-                    </div>
-                    <div class="descripcion">
-                        <p class="textoTaza">Tradicional taza de cafe 100% <br>Colombiano</p>
+            <div class="caja1">
+                <img class="taza1" src="{{url_for('static', filename='img/taza.jpg')}}" alt="taza de cafe">
+                <div class="info">
+                    <h2>Taza de cafe</h2>
+                    <div class="links">
+                        <a type="submit" class="colorEditar" onclick="togglePopup()">Editar</a>
                     </div>
                 </div>
-                <div class="caja2">
-                    <img class="torta" src="{{url_for('static', filename='img/torta.jpeg')}}" alt="torta de chocolate">
-                    <div class="info">
-                        <h2>Torta de chocolate</h2>
-                        <div class="links2">
-                            <a class="colorEditar" onclick="togglePopup()">Editar</a>
-                        </div>
-                    </div>
-                    <div class="cantidad">
-                        <h5>Cantidad en unidades</h5>
-                    </div>
-                    <div class="descripcion">
-                        <p class="textoTaza2">Deliciosa torta de chocolate cubierta con <br> ganashe de chocolate</p>
+                <div class="cantidad">
+                    <h5>Cantidad en unidades</h5>
+                </div>
+                <div class="descripcion">
+                    <p class="textoTaza">Tradicional taza de cafe 100% <br>Colombiano</p>
+                </div>
+            </div>
+            <div class="caja2">
+                <img class="torta" src="{{url_for('static', filename='img/torta.jpeg')}}" alt="torta de chocolate">
+                <div class="info">
+                    <h2>Torta de chocolate</h2>
+                    <div class="links2">
+                        <a class="colorEditar" onclick="togglePopup()">Editar</a>
                     </div>
                 </div>
-                <div class="caja3">
-                    <img class="granizado" src="{{url_for('static', filename='img/granizado.jpg')}}" alt="granizado de cafe">
-                    <div class="info">
-                        <h2>Graizado de cafe</h2>
-                        <div class="links3">
-                            <a class="colorEditar" onclick="togglePopup()">Editar</a>
-                        </div>
-                    </div>
-                    <div class="cantidad">
-                        <h5>Cantidad en unidades</h5>
-                    </div>
-                    <div class="descripcion">
-                        <p class="textoTaza3">Espectacular granizado con crema chantilly</p>
+                <div class="cantidad">
+                    <h5>Cantidad en unidades</h5>
+                </div>
+                <div class="descripcion">
+                    <p class="textoTaza2">Deliciosa torta de chocolate cubierta con <br> ganashe de chocolate</p>
+                </div>
+            </div>
+            <div class="caja3">
+                <img class="granizado" src="{{url_for('static', filename='img/granizado.jpg')}}"
+                    alt="granizado de cafe">
+                <div class="info">
+                    <h2>Graizado de cafe</h2>
+                    <div class="links3">
+                        <a class="colorEditar" onclick="togglePopup()">Editar</a>
                     </div>
                 </div>
-        </section>    
+                <div class="cantidad">
+                    <h5>Cantidad en unidades</h5>
+                </div>
+                <div class="descripcion">
+                    <p class="textoTaza3">Espectacular granizado con crema chantilly</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <div class="popup" id="popup-1">
         <div class="overlay"></div>
         <div class="content">
-        <div class="close-btn" onclick="togglePopup()">&times;</div>
-        <div class="contenedor">
-            <div class="imagen">  
-                <img class="producto"src="{{url_for('static', filename='img/producto.jpg')}}" alt="producto">
-            </div>
-            <div class="divform">
-                <form class="formularioN" action="">
+            <div class="close-btn" onclick="togglePopup()">&times;</div>
+            <div class="contenedor">
+                <div class="imagen">
+                    <img class="producto" src="{{url_for('static', filename='img/producto.jpg')}}" alt="producto">
+                </div>
+                <div class="divform">
+                    <form class="formularioN" action="">
                         <div>
-                            <label class="quantity" for="cantidad">cantidad</label>    
+                            <label class="quantity" for="cantidad">cantidad</label>
                             <input class="quantity1" type="number" id="cantidad">
                         </div>
                         <input class="boton" type="submit" value="Actualizar">
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
         </div>
     </div>
 
@@ -97,4 +100,5 @@
 
     <script src="{{url_for('static', filename='js/admin.js')}}"></script>
 </body>
+
 </html>

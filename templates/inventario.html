@@ -47,35 +47,57 @@
                 </tr>
                 {% for row in rows %}
                 <tr>
+                    <form method="POST">
 
-                    <td></td>
-                    <td>{{ 0 }}</td>
-                    <td>{{ row[1] }}</td>
-                    <td>{{ row[0] }}</td>
-                    <td>{{ row[2] }}</td>
-                    <td>{{ row[3] }}</td>
-                    <td>
+                        <td></td>
 
-                        <li>
+                        <td>{{ 0 }}</td>
 
+                        <td> <input id="show1{{row[0]}}" value="{{row[1]}}" type="text" name="nameProducto" disabled>
+                        </td>
+                        <td> <input type="text" name="idP" value="{{ row[0] }}" disabled> </td>
+                        <td>
+                            <input id="show2{{row[0]}}" value="{{row[2]}}" type="text" name="quantity" disabled></td>
+                        <td><input id="show3{{row[0]}}" value="{{row[3]}}" type="text" name="description" disabled></td>
+                        <td>
+                            <li>
+                                <input type="button" value="editar" onclick="habilitar('{{row[0]}}');">
+                            </li>
 
-                            <button class="botones">
-                                <a href=>Editar</a>
-                            </button>
-                        </li>
-
-                        <li>
-                            <button class="botones">
-                                <a href="{{ url_for('eliminar',idP=row[0])}}">Eliminar</a>
-                            </button>
-                        </li>
-                    </td>
-
-
+                            <li>
+                                <button class="botones">
+                                    <a href="{{ url_for('eliminar',idP=row[0])}}">Eliminar</a>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="botones">
+                                    <a href="{{ url_for('actualizar',idP=row[0])}}">Actualizar</a>
+                                </button>
+                            </li>
+                        </td>
+                    </form>
                 </tr>
+                <!-- <tr class="barra-edicion" id="show{{row[0]}}" style="display:none;">
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input id="nombre" value="{{row[1]}}" type="text">
+                    </td>
+                    <td>
+                        <input id="codigo" value="{{row[0]}}" type="text">
+                    </td>
+                    <td>
+                        <input id="cantidad" value="{{row[2]}}" type="text">
+                    </td>
+                    <td>
+                        <input id="descripcion" value="{{row[3]}}" type="text">
+                    </td>
+                    <td>
+                        <input type="button" value="Ocultar" onclick="myFunction('{{row[0]}}');">
+                    </td>
+                </tr> -->
                 {% endfor %}
             </table>
-
 
 
         </section>
