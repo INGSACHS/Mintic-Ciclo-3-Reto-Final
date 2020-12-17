@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for ('static', filename='Styles/actualizar.css' )}}">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Actualizar Producto</h1>
+    </header>
+    <form action="/saveProductoG" method="POST" class="seccion" id="CrearProducto">
+        <div class="formulario">
+            <div class="etiquetas">
+                <label for="nombre">Nombre Producto</label>
+                <label for="cantidad">Cantidad</label>
+                <label for="descripcion">Descripción</label>
+
+            </div>
+            <div class="formularioUsuario">
+                <input type="text" name="namep" id="namep" value="{{producto[1]}}" disabled>
+                <input type="number" name="quantity" id="quantity" value="{{producto[2]}}">
+                <input type="text" name="description" id="description" value="{{producto[3]}}" disabled>
+                <input type="number" name="idP" value="{{producto[0]}}" style=" display: none">
+                <input class="enviar" type="submit" value="Actualizar Producto">
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

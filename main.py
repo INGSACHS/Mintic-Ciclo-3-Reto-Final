@@ -95,6 +95,17 @@ def inventario():
     return render_template('inventario.html', rows=rows)
 
 
+@app.route('/inventarioGeneral.html')
+@login_required
+def inventarioGeneral():
+    con = sqlite3.connect('Inventario.db')
+    cursor = con.cursor()
+    cursor.execute("SELECT * FROM TBL_PRODUCTO")
+    listas = cursor.fetchall()
+
+    return render_template('inventarioGeneral.html', listas=listas)
+
+
 @app.route('/eliminar/<int:idP>', methods=('GET', 'POST'))
 @login_required
 def eliminar(idP):
@@ -118,15 +129,23 @@ def filtrar():
     cursor.execute(
         'SELECT * FROM TBL_PRODUCTO where NOMBRE LIKE ?', (consulta,))
     rows = cursor.fetchall()
-    print(rows)
 
     return render_template('inventario.html', rows=rows)
 
 
-@app.route('/inventarioGeneral.html')
+@app.route('/filtrarG', methods=('GET', 'POST'))
 @login_required
-def inventarioGeneral():
-    return render_template('inventarioGeneral.html')
+def filtrarG():
+    palabra = request.args.get('Buscar')
+    con = sqlite3.connect('Inventario.db')
+    cursor = con.cursor()
+    consulta = "%"+palabra+"%"
+    cursor.execute(
+        'SELECT * FROM TBL_PRODUCTO where NOMBRE LIKE ?', (consulta,))
+    listas = cursor.fetchall()
+
+    return render_template('inventarioGeneral.html', listas=listas)
+
 
 # CREAR NUEVO USUARIO //Validaciones
 
@@ -200,6 +219,17 @@ def actualizar(idP):
     return render_template('actualizar2.html', producto=producto)
 
 
+@app.route('/actualizarG/<int:idP>/', methods=('GET', 'POST'))
+@login_required
+def actualizarG(idP):
+    con = sqlite3.connect('Inventario.db')
+    cursor = con.cursor()
+    cursor.execute("SELECT * FROM TBL_PRODUCTO WHERE CODIGO= ?", (idP,))
+    producto = cursor.fetchone()
+
+    return render_template('actualizarG.html', producto=producto)
+
+
 @app.route('/saveProducto', methods=('GET', 'POST'))
 def saveProducto():
     name_producto = request.form['namep']
@@ -213,6 +243,19 @@ def saveProducto():
         "UPDATE TBL_PRODUCTO SET NOMBRE= ?, CANTIDAD=?, DESCRIPCION=? where CODIGO=?", (name_producto, quantity, description, idP,))
     con.commit()
     return inventario()
+
+
+@app.route('/saveProductoG', methods=('GET', 'POST'))
+def saveProductoG():
+    quantity = request.form['quantity']
+    idP = request.form['idP']
+    con = sqlite3.connect('Inventario.db')
+    cursor = con.cursor()
+
+    cursor.execute(
+        "UPDATE TBL_PRODUCTO SET CANTIDAD=? where CODIGO=?", (quantity, idP,))
+    con.commit()
+    return inventarioGeneral()
 
 # validar usuario en el login
 

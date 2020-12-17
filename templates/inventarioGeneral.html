@@ -6,99 +6,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Gestor de inventario para cafeteria">
     <meta name="keywords" content="Inventario, Gestos de invetario, Cafeteria">
+    <!--Titulo de la pagina -->
     <title>Inventario | Cafeteria</title>
-    <link rel="stylesheet" href="{{url_for ('static', filename='Styles/stylesGeneral.css' )}}">
+    <!-- Conexion con la carpeta de css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/styles.css')}}">
+    <script type="text/javascript" src="{{url_for('static', filename='js/admin.js')}}"></script>
+
 </head>
 
 <body>
 
     <header>
         <h1 class="titulo">Inventario para cafeteria </h1>
+
     </header>
 
     <main>
+
         <section>
-            <input class="barraBusqueda" type="search" id="buscar" name="Buscar" placeholder="Buscar">
-            <div class="botones">
-                <input class="busqueda" type="submit" value="Buscar" />
-                <input class="busqueda" type="button" value="Regresar" onclick="location.href= 'general.html'" />
-                <!--a class="busqueda" href="{{ url_for('usuario') }}">Regresar</a>-->
-            </div>
-            <div class="caja1">
-                <img class="taza1" src="{{url_for('static', filename='img/taza.jpg')}}" alt="taza de cafe">
-                <div class="info">
-                    <h2>Taza de cafe</h2>
-                    <div class="links">
-                        <a type="submit" class="colorEditar" onclick="togglePopup()">Editar</a>
+            <form action="/filtrarG" method="GET">
+                <div class="contenedor-busqueda">
+                    <input class="barraBusqueda" type="search" id="buscar" name="Buscar" placeholder="Buscar...">
+                    <div class="botones">
+                        <input href="{{ url_for('filtrarG')}}" class="busqueda" type="submit" value="Buscar" />
+                        <input class="regresar" type="button" value="Regresar"
+                            onclick="location.href= 'general.html'" />
+                        <!--<a class="regresar" href="{{ url_for('administrador') }}">Regresar</a> -->
                     </div>
                 </div>
-                <div class="cantidad">
-                    <h5>Cantidad en unidades</h5>
-                </div>
-                <div class="descripcion">
-                    <p class="textoTaza">Tradicional taza de cafe 100% <br>Colombiano</p>
-                </div>
-            </div>
-            <div class="caja2">
-                <img class="torta" src="{{url_for('static', filename='img/torta.jpeg')}}" alt="torta de chocolate">
-                <div class="info">
-                    <h2>Torta de chocolate</h2>
-                    <div class="links2">
-                        <a class="colorEditar" onclick="togglePopup()">Editar</a>
-                    </div>
-                </div>
-                <div class="cantidad">
-                    <h5>Cantidad en unidades</h5>
-                </div>
-                <div class="descripcion">
-                    <p class="textoTaza2">Deliciosa torta de chocolate cubierta con <br> ganashe de chocolate</p>
-                </div>
-            </div>
-            <div class="caja3">
-                <img class="granizado" src="{{url_for('static', filename='img/granizado.jpg')}}"
-                    alt="granizado de cafe">
-                <div class="info">
-                    <h2>Graizado de cafe</h2>
-                    <div class="links3">
-                        <a class="colorEditar" onclick="togglePopup()">Editar</a>
-                    </div>
-                </div>
-                <div class="cantidad">
-                    <h5>Cantidad en unidades</h5>
-                </div>
-                <div class="descripcion">
-                    <p class="textoTaza3">Espectacular granizado con crema chantilly</p>
-                </div>
-            </div>
-        </section>
-    </main>
+            </form>
+            <table class="tabla">
 
-    <div class="popup" id="popup-1">
-        <div class="overlay"></div>
-        <div class="content">
-            <div class="close-btn" onclick="togglePopup()">&times;</div>
-            <div class="contenedor">
-                <div class="imagen">
-                    <img class="producto" src="{{url_for('static', filename='img/producto.jpg')}}" alt="producto">
-                </div>
-                <div class="divform">
-                    <form class="formularioN" action="">
-                        <div>
-                            <label class="quantity" for="cantidad">cantidad</label>
-                            <input class="quantity1" type="number" id="cantidad">
-                        </div>
-                        <input class="boton" type="submit" value="Actualizar">
+                <tr>
+                    <th></th>
+                    <th>Miniatura</th>
+                    <th>Nombre</th>
+                    <th>ID producto</th>
+                    <th>Cantidad</th>
+                    <th>descripción</th>
+                    <th>Acción</th>
+                </tr>
+                {% for row in listas %}
+                <tr>
+                    <form method="POST">
+
+                        <td></td>
+
+                        <td>{{ 0 }}</td>
+
+                        <td> {{row[1]}} </td>
+                        <td> {{ row[0] }}</td>
+                        <td>{{row[2]}}</td>
+                        <td>{{row[3]}}</td>
+                        <td>
+
+                            <li>
+                                <button class="busqueda">
+                                    <a href="{{ url_for('actualizarG',idP=row[0])}}">Editar</a>
+                                </button>
+                            </li>
+                        </td>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                </tr>
 
-    <footer>
+                {% endfor %}
+            </table>
 
-    </footer>
 
+        </section>
+
+    </main>
     <script src="{{url_for('static', filename='js/admin.js')}}"></script>
+
+
 </body>
 
 </html>

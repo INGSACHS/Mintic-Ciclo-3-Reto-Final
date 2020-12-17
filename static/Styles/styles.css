@@ -126,6 +126,8 @@ ul li button:hover {
     font-family: Sacramento;
     font-size: x-large;
     width: fit-content;
+    color: black;
+    text-decoration: none;
 
 }
 
