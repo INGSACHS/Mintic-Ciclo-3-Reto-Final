@@ -188,14 +188,15 @@ def new_product():
     name_producto = request.form['namep']
     quantity = request.form['quantity']
     description = request.form['description']
+    foto = request.form['photo']
     print(name_producto)
     db = get_db()
-
+    ruta = "../static/img/"+foto
     if(name_producto != ""):
         if(quantity != ""):
             if(description != ""):
-                db.execute('INSERT INTO TBL_PRODUCTO (NOMBRE, CANTIDAD, DESCRIPCION ) VALUES (?,?,?)',
-                           (name_producto, quantity, description))
+                db.execute('INSERT INTO TBL_PRODUCTO (NOMBRE, CANTIDAD, DESCRIPCION, IMAGEN ) VALUES (?,?,?,?)',
+                           (name_producto, quantity, description, ruta))
 
     else:
         pass
@@ -215,7 +216,6 @@ def actualizar(idP):
     cursor = con.cursor()
     cursor.execute("SELECT * FROM TBL_PRODUCTO WHERE CODIGO= ?", (idP,))
     producto = cursor.fetchone()
-    print(producto)
     return render_template('actualizar2.html', producto=producto)
 
 
@@ -236,12 +236,19 @@ def saveProducto():
     quantity = request.form['quantity']
     description = request.form['description']
     idP = request.form['idP']
+    imagen = request.form['picture']
+    ruta2 = "../static/img/" + imagen
     con = sqlite3.connect('Inventario.db')
     cursor = con.cursor()
+    if (ruta2 == "../static/img/"):
+        cursor.execute(
+            "UPDATE TBL_PRODUCTO SET NOMBRE= ?, CANTIDAD=?, DESCRIPCION=? where CODIGO=?", (name_producto, quantity, description, idP,))
+        con.commit()
+    else:
+        cursor.execute(
+            "UPDATE TBL_PRODUCTO SET NOMBRE= ?, CANTIDAD=?, DESCRIPCION=?, IMAGEN=? where CODIGO=?", (name_producto, quantity, description, ruta2, idP,))
+        con.commit()
 
-    cursor.execute(
-        "UPDATE TBL_PRODUCTO SET NOMBRE= ?, CANTIDAD=?, DESCRIPCION=? where CODIGO=?", (name_producto, quantity, description, idP,))
-    con.commit()
     return inventario()
 
 
