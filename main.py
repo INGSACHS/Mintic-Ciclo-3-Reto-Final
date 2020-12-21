@@ -118,6 +118,8 @@ def eliminar(idP):
 
     return inventario()
 
+# metodo de buscar en rol "administrador"
+
 
 @app.route('/filtrar', methods=('GET', 'POST'))
 @login_required
@@ -131,6 +133,8 @@ def filtrar():
     rows = cursor.fetchall()
 
     return render_template('inventario.html', rows=rows)
+
+# metodo de buscar en rol "usuario"
 
 
 @app.route('/filtrarG', methods=('GET', 'POST'))
@@ -218,6 +222,8 @@ def actualizar(idP):
     producto = cursor.fetchone()
     return render_template('actualizar2.html', producto=producto)
 
+# actualizar cantidad rol "usuario"
+
 
 @app.route('/actualizarG/<int:idP>/', methods=('GET', 'POST'))
 @login_required
@@ -228,6 +234,8 @@ def actualizarG(idP):
     producto = cursor.fetchone()
 
     return render_template('actualizarG.html', producto=producto)
+
+# guardar actualizacion del producto rol "administrador"
 
 
 @app.route('/saveProducto', methods=('GET', 'POST'))
@@ -250,6 +258,8 @@ def saveProducto():
         con.commit()
 
     return inventario()
+
+# guardar actualizacion rol"usuario"
 
 
 @app.route('/saveProductoG', methods=('GET', 'POST'))
